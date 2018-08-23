@@ -2,31 +2,31 @@ $(function () {
     const BASE_API_URL = "http://1zplay.com/api/";
     const LIVE_SCHEDULE = BASE_API_URL + "live_schedules"
     var timeStamp = new Date().getTime();
-    var category = "all";
+    var category = "dota2";
     var data = {
         "_" : timeStamp,
         "category" : category
     };
-    function renderView(data) {
+    function renderListView(data) {
         $.each(data, function(key, value){
-            console.log(key);
-            console.log(value);
             $('.weui-cells').append(getItem(value));
         });
     };
 
-    function getItem(match) {
+    function getItem(item) {
         var itemBody = '';
         itemBody += '<div class="weui-cell">';
         itemBody += '<div class="weui-cell__hd" style="position: relative;margin-right: 10px;">';
-        itemBody += '<img src="' + match['left_team']['logo'] + '" style="width: 50px;display: block"/>'
+        itemBody += '<img src="' + item['left_team']['logo'] + '" style="width: 50px;display: block"/>'
         itemBody += '</div>';
         itemBody += '<div class="weui-cell__bd">';
-        itemBody += '<p style="float:left">' + match['left_team']['name'] + '</p>';
-        itemBody += '<p style="float:right">' + match['right_team']['name'] + '</p>';
+        itemBody += '<p style="float:left">' + item['left_team']['name'] + '</p>';
+        itemBody += '<p style="float:left">' + item['live_match']['left_data']['score'] + '</p>';
+        itemBody += '<p style="float:right">' + item['right_team']['name'] + '</p>';
+        itemBody += '<p style="float:right">' + item['live_match']['right_data']['score'] + '</p>';
         itemBody += '</div>';
         itemBody += '<div class="weui-cell__ft">';
-        itemBody += '<img src="' + match['right_team']['logo'] + '" style="width: 50px;display: block"/>';
+        itemBody += '<img src="' + item['right_team']['logo'] + '" style="width: 50px;display: block"/>';
         itemBody += '</div>';
         itemBody += '</div>';
         return itemBody;
@@ -34,7 +34,7 @@ $(function () {
     try {
         $.get(LIVE_SCHEDULE, data, function(response){
             console.log(response);
-            renderView(response);
+            renderListView(response);
         });
     }
     catch(err) {
