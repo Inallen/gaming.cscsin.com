@@ -55,15 +55,15 @@ $(function () {
         itemBody += '<div class="weui-cell">';
         itemBody += '<div class="weui-cell__hd" style="position: relative;margin-right: 10px;">';
         itemBody += '<img src="' + item['left_team']['logo'] + '" style="width: 50px;display: block"/>'
+        itemBody += '<span>' + item['left_team']['name'] + '</sapn>';
         itemBody += '</div>';
         itemBody += '<div class="weui-cell__bd">';
-        itemBody += '<p style="float:left">' + item['left_team']['name'] + '</p>';
         itemBody += '<p style="float:left">' + itemManager.setItem(item).getItemScore("left_team") + '</p>';
-        itemBody += '<p style="float:right">' + item['right_team']['name'] + '</p>';
         itemBody += '<p style="float:right">' + itemManager.setItem(item).getItemScore("right_team") + '</p>';
         itemBody += '</div>';
         itemBody += '<div class="weui-cell__ft">';
-        itemBody += '<img src="' + item['right_team']['logo'] + '" style="width: 50px;display: block"/>';
+        itemBody += '<img src="' + item['right_team']['logo'] + '" class="team_logo" />';
+        itemBody += '<span>' + item['right_team']['name'] + '</sapn>';
         itemBody += '</div>';
         itemBody += '</div>';
         return itemBody;
